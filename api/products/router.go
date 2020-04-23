@@ -11,7 +11,13 @@ import (
 )
 
 func GetProducts(w http.ResponseWriter, r *http.Request) {
-	client := api.DBConnect()
+
+	client, err := api.DBConnect()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
 	collection := client.Database("cafe").Collection("productos")
 
 	var products []*Product
@@ -53,7 +59,11 @@ func CreateProduct(w http.ResponseWriter, r *http.Request) {
 	var product Product
 	_ = json.NewDecoder(r.Body).Decode(&product)
 
-	client := api.DBConnect()
+	client, err := api.DBConnect()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 	collection := client.Database("cafe").Collection("productos")
 
 	// insert our book model.

@@ -9,7 +9,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-func DBConnect() *mongo.Client {
+func DBConnect() (*mongo.Client, error) {
 
 	// Set client options
 	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
@@ -19,14 +19,16 @@ func DBConnect() *mongo.Client {
 
 	if err != nil {
 		log.Fatal(err)
+		return nil, err
 	}
 	// Check the connection
 	err = client.Ping(context.TODO(), nil)
 
 	if err != nil {
 		log.Fatal(err)
+		return nil, err
 	}
 
 	fmt.Println("Connected to MongoDB!")
-	return client
+	return client, nil
 }
