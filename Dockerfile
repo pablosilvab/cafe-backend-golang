@@ -1,13 +1,24 @@
-FROM golang:latest as builder
-WORKDIR /app
-COPY go.mod ./
-RUN go mod download
-COPY . .
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main cmd/main.go
 
-FROM alpine:latest  
-RUN apk --no-cache add ca-certificates
-WORKDIR /app/
-COPY --from=builder /app/main .
+# build stage
+FROM golang:latest as builder
+
+ENV GO111MODULE=on
+
+WORKDIR /app
+
+COPY go.mod .
+COPY go.sum .
+
+RUN go mod download
+
+COPY . .
+
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o run cmd/main.go
+
+# final stage
+FROM alpine:latest 
+COPY --from=builder /app/run /app/
+COPY config/ "/app/config"
+WORKDIR /app
 EXPOSE 8080
-ENTRYPOINT ["./main"] 
+ENTRYPOINT ["./run"]
