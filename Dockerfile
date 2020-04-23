@@ -20,5 +20,5 @@ FROM alpine:latest
 COPY --from=builder /app/run /app/
 COPY config/ "/app/config"
 WORKDIR /app
-EXPOSE 8080
-ENTRYPOINT ["./run"]
+EXPOSE 8000
+CMD ["./run"]
