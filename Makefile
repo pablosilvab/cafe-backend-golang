@@ -17,3 +17,7 @@ go-build:
 
 go-run:
 	go run cmd/main.go
+
+go-download:
+	export GO111MODULE=on
+	go mod download
