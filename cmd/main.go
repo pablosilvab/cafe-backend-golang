@@ -19,6 +19,7 @@ func main() {
 	api.LoadConfig()
 	router := mux.NewRouter().StrictSlash(true)
 	router.HandleFunc("/products", products.GetProducts).Methods("GET")
+	router.HandleFunc("/products", products.CreateProduct).Methods("POST")
 	log.Println("Running on port " + data.Port)
 	log.Fatal(http.ListenAndServe(":"+data.Port, router))
 }

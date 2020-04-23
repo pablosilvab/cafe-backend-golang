@@ -46,3 +46,30 @@ func GetProducts(w http.ResponseWriter, r *http.Request) {
 	w.Write(response)
 
 }
+
+func CreateProduct(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	var product Product
+	_ = json.NewDecoder(r.Body).Decode(&product)
+
+	client := api.DBConnect()
+	collection := client.Database("cafe").Collection("productos")
+
+	// insert our book model.
+	result, err := collection.InsertOne(context.TODO(), product)
+
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	response, err := json.Marshal(result)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(response)
+}
