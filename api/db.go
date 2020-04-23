@@ -9,7 +9,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-func DBConnect() {
+func DBConnect() *mongo.Client {
 
 	// Set client options
 	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
@@ -28,4 +28,5 @@ func DBConnect() {
 	}
 
 	fmt.Println("Connected to MongoDB!")
+	return client
 }
