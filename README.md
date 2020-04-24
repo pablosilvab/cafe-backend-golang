@@ -1,6 +1,8 @@
 # Microservicio Cafe
 Servicio para extraer información de una base de datos MongoDB escrita en Golang
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/pablosilvab/cafe-backend-golang?cache=1)](https://goreportcard.com/report/github.com/pablosilvab/cafe-backend-golang)
+
 ## Comenzando 🚀
 
 Para clonar el proyecto solo debes ejecutar el siguiente comando.
