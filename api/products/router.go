@@ -10,7 +10,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 )
 
-// GetProducts: Methor for get all products in the DB
+// GetProducts : Method for get all products in the DB
 func GetProducts(w http.ResponseWriter, r *http.Request) {
 
 	client, err := api.DBConnect()
@@ -54,7 +54,7 @@ func GetProducts(w http.ResponseWriter, r *http.Request) {
 
 }
 
-// CreateProduct: Methor for insert a product in DB
+// CreateProduct : Method for insert a product in DB
 func CreateProduct(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
