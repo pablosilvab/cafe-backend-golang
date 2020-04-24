@@ -2,7 +2,7 @@ package products
 
 import "go.mongodb.org/mongo-driver/bson/primitive"
 
-// Product: Model for product struct
+// Product : Model for product struct
 type Product struct {
 	//Id          primitive.ObjectID `json:"_id,omitempty" bson:"_id,omitempty"`
 	Available   bool               `json:"disponible,omitempty" bson:"disponible,omitempty"`
