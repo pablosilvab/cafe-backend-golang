@@ -9,6 +9,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+// DBConnect: Function for return a Mongo DB client
 func DBConnect() (*mongo.Client, error) {
 
 	// Set client options
