@@ -5,6 +5,9 @@ PROJECT_FOLDER=.
 GIT_DIR=$(shell pwd)
 HOST_PORT=8080
 
+helm-install:
+	helm install cafe-backend-golang ./charts/
+
 docker-shell:
 	docker run --rm -it -v $(GIT_DIR):/app -w /app/$(PROJECT_FOLDER) --entrypoint=/bin/sh ${APP_NAME}:${APP_VERSION}
 
