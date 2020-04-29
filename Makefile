@@ -1,5 +1,6 @@
 APP_NAME=cafe-backend-golang
 APP_VERSION=0.0.1.SNAPSHOT
+APP_DOCKER_HOST = pablon27
 PROJECT_FOLDER=.
 GIT_DIR=$(shell pwd)
 HOST_PORT=8080
@@ -12,6 +13,10 @@ docker-run:
 
 docker-build:
 	docker build -t ${APP_NAME}:${APP_VERSION} ${GIT_DIR}
+
+docker-push:
+	docker build -t ${APP_DOCKER_HOST}/${APP_NAME}:${APP_VERSION} ${GIT_DIR}
+	docker push ${APP_DOCKER_HOST}/${APP_NAME}:${APP_VERSION} 
 
 go-run-build:
 	./build/${APP_NAME}
