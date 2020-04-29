@@ -22,10 +22,23 @@ func home(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	api.LoadConfig()
+
 	router := mux.NewRouter().StrictSlash(true)
 	router.HandleFunc("/", home).Methods("GET")
+
+	router.HandleFunc("/health", healthHandler)
+	router.HandleFunc("/ready", readinessHandler)
+
 	router.HandleFunc("/products", products.GetProducts).Methods("GET")
 	router.HandleFunc("/products", products.CreateProduct).Methods("POST")
 	log.Println("Running on port " + data.Port)
 	log.Fatal(http.ListenAndServe(":"+data.Port, router))
+}
+
+func healthHandler(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusOK)
+}
+
+func readinessHandler(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusOK)
 }
