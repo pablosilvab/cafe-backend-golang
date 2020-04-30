@@ -41,13 +41,14 @@ service:
   port: 8000
 
 ingress:
-  enabled: false
+  enabled: true
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
     - host: kadevl.com
-      paths: []
+      paths:
+      - /
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
@@ -77,3 +78,7 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+mongo:
+  secretKeyRef: "mongodb-connection"
+  bindPassEnv: "MONGODB_URI"

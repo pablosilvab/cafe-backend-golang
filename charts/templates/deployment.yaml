@@ -37,6 +37,12 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
+          env: 
+          - name: {{ .Values.mongo.bindPassEnv }}
+            valueFrom:
+              secretKeyRef:
+                key: mongo
+                name: {{ .Values.mongo.secretKeyRef }}
           livenessProbe:
             httpGet:
               path: /health

@@ -6,7 +6,10 @@ GIT_DIR=$(shell pwd)
 HOST_PORT=8080
 
 helm-install:
-	helm install cafe-backend-golang ./charts/
+	helm install ${APP_NAME} ./charts/
+
+helm-replace:
+	helm delete ${APP_NAME} && helm install ${APP_NAME} ./charts/
 
 docker-shell:
 	docker run --rm -it -v $(GIT_DIR):/app -w /app/$(PROJECT_FOLDER) --entrypoint=/bin/sh ${APP_NAME}:${APP_VERSION}
