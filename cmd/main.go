@@ -29,8 +29,8 @@ func main() {
 	router.HandleFunc("/health", healthHandler)
 	router.HandleFunc("/ready", readinessHandler)
 
-	router.HandleFunc("/products", products.GetProducts).Methods("GET")
-	router.HandleFunc("/products", products.CreateProduct).Methods("POST")
+	router.HandleFunc("/api/products", products.GetProducts).Methods("GET")
+	router.HandleFunc("/api/products", products.CreateProduct).Methods("POST")
 
 	server := &http.Server{
 		Addr:    ":" + data.Port,
