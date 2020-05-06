@@ -6,20 +6,13 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/pablosilvab/cafe-backend-golang/api"
 	"go.mongodb.org/mongo-driver/bson"
 )
 
 // GetProducts : Method for get all products in the DB
 func GetProducts(w http.ResponseWriter, r *http.Request) {
 
-	client, err := api.DBConnect()
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-
-	collection := client.Database("cafe").Collection("productos")
+	collection := DB.Collection("productos")
 
 	var products []*Product
 
@@ -61,12 +54,7 @@ func CreateProduct(w http.ResponseWriter, r *http.Request) {
 	var product Product
 	_ = json.NewDecoder(r.Body).Decode(&product)
 
-	client, err := api.DBConnect()
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-	collection := client.Database("cafe").Collection("productos")
+	collection := DB.Collection("productos")
 
 	// insert our book model.
 	result, err := collection.InsertOne(context.TODO(), product)

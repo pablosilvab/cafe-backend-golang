@@ -22,6 +22,7 @@ func home(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	api.LoadConfig()
+	products.DBConnect()
 
 	router := mux.NewRouter().StrictSlash(true)
 	router.HandleFunc("/", home).Methods("GET")

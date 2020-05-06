@@ -1,4 +1,4 @@
-package api
+package products
 
 import (
 	"context"
@@ -10,8 +10,10 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+var DB *mongo.Database
+
 // DBConnect : Function for return a Mongo DB client
-func DBConnect() (*mongo.Client, error) {
+func DBConnect() {
 
 	// Set client options
 	clientOptions := options.Client().ApplyURI(os.Getenv("MONGODB_URI"))
@@ -21,16 +23,14 @@ func DBConnect() (*mongo.Client, error) {
 
 	if err != nil {
 		log.Fatal(err)
-		return nil, err
 	}
 	// Check the connection
 	err = client.Ping(context.TODO(), nil)
 
 	if err != nil {
 		log.Fatal(err)
-		return nil, err
 	}
+	DB = client.Database("cafe")
 
 	fmt.Println("Connected to MongoDB!")
-	return client, nil
 }
