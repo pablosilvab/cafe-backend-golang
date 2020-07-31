@@ -6,7 +6,7 @@ GIT_DIR=$(shell pwd)
 HOST_PORT=8080
 
 helm-install:
-	helm install ${APP_NAME} ./charts/
+	helm upgrade -i ${APP_NAME} ./charts/
 
 helm-replace:
 	helm delete ${APP_NAME} && helm install ${APP_NAME} ./charts/

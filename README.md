@@ -72,6 +72,13 @@ make go-run
 
 Pendiente
 
+* Secret
+
+```
+kubectl create secret generic cafe-backend-secret \
+  --from-literal mongo="mongodb+srv://pxs272:ssdDm07oaSyYFSJP@cluster0-pco8i.mongodb.net/cafe?retryWrites=true&w=majority"
+```
+
 ## Construido con 🛠️
 
 * [Golang](https://golang.org) - Lenguaje de programación concurrente y compilado inspirado en la sintaxis de C.

@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: pablon27/cafe-backend-golang
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart version.
   tag: "0.0.1.SNAPSHOT"
 
@@ -41,7 +41,7 @@ service:
   port: 8000
 
 ingress:
-  enabled: true
+  enabled: false
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
@@ -80,5 +80,5 @@ tolerations: []
 affinity: {}
 
 mongo:
-  secretKeyRef: "mongodb-connection"
+  secretKeyRef: "cafe-backend-secret"
   bindPassEnv: "MONGODB_URI"
