@@ -76,7 +76,7 @@ Pendiente
 
 ```
 kubectl create secret generic cafe-backend-secret \
-  --from-literal mongo="mongodb+srv://pxs272:ssdDm07oaSyYFSJP@cluster0-pco8i.mongodb.net/cafe?retryWrites=true&w=majority"
+  --from-literal mongo="xxxXXxxx"
 ```
 
 ## Construido con 🛠️
